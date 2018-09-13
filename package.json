@@ -1,0 +1,27 @@
+{
+  "name": "limbo-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "3000",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/limbo93/backend.git"
+  },
+  "keywords": [
+    "service",
+    "express",
+    "node"
+  ],
+  "author": "limbo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/limbo93/backend/issues"
+  },
+  "homepage": "https://github.com/limbo93/backend#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
