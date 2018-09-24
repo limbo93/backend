@@ -37,10 +37,6 @@ app.get("/profile/:profileId", async (req, res) => {
   }
 });
 
-app.post("/register", auth.register);
-
-app.post("/login", auth.login);
-
 mongoose.connect(
   "mongodb://limbo:mongo_db_1@ds211613.mlab.com:11613/pssocial",
   { useNewUrlParser: true },
@@ -51,4 +47,5 @@ mongoose.connect(
   }
 );
 
+app.use("/auth", auth);
 app.listen(3000);
