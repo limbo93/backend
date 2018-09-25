@@ -29,4 +29,4 @@ app.use('/auth', authService.router);
 app.use(userService);
 app.use(profileService);
 app.use(messageService);
-app.listen(3000);
+app.listen(process.env.PORT || 3000);
