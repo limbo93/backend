@@ -14,14 +14,18 @@ let app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-
-mongoose.connect('mongodb://limbo:mongo_db_1@ds211613.mlab.com:11613/pssocial', { useNewUrlParser: true }, err => {
-  if (!err) {
-    console.log('connected to mongoose');
-  }
+app.get('/rnd', (req, res) => {
+    res.send({ message: 'rnd success!' });
 });
 
-app.use('/auth', authService);
+
+mongoose.connect('mongodb://limbo:mongo_db_1@ds211613.mlab.com:11613/pssocial', { useNewUrlParser: true }, err => {
+    if (!err) {
+        console.log('connected to mongoose');
+    }
+});
+
+app.use('/auth', authService.router);
 app.use(userService);
 app.use(profileService);
 app.use(messageService);

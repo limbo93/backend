@@ -1,10 +1,12 @@
 let Message = require('./models/Message.js');
 let express = require('express');
 let router = express.Router();
+let authService = require('./auth.service.js');
 
-router.post('/messages', (req, res) => {
+
+router.post('/messages', authService.checkAuthenticated, (req, res) => {
     let messageData = req.body;
-    messageData.author = '5ba8897981af7d32ec8733fe';
+    messageData.author = req.userId;
     let message = new Message(messageData);
 
     message.save((err, result) => {

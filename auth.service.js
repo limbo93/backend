@@ -32,4 +32,22 @@ router.post('/login', async (req, res) => {
   });
 });
 
-module.exports = router;
+const auth = {
+  router,
+  checkAuthenticated: (req, res, next) => {
+    if (!req.header('Authorization'))
+      return res.status(401).send({ message: 'Unauthorized. Token missing.' });
+
+    let token = req.header('Authorization').split(' ')[1];
+    var payload = jwt.decode(token, '123');
+
+    if (!payload)
+      return res.status(401).send({ message: 'Unauthorized. Auth header invalid.' });
+
+    req.userId = payload.subject;
+
+    next();
+  }
+}
+
+module.exports = auth;

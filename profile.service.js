@@ -1,6 +1,8 @@
 let express = require('express');
 let router = express.Router();
 let User = require('./models/User.js');
+let server = require('./server.js');
+
 
 router.get('/profile/:profileId', async (req, res) => {
     try {
