@@ -8,10 +8,14 @@ router.post('/register', (req, res) => {
   let userData = req.body;
   let user = new User(userData);
 
-  user.save((err, result) => {
-    if (err) console.log('error occured while saving user data');
+  user.save((err, newUser) => {
+    if (err)
+      return res.status(500).send({ message: 'Email saving user.' });
 
-    res.status(201).send(result);
+    let payload = { subject: newUser._id };
+    let token = jwt.encode(payload, '123');
+
+    res.status(200).send({ token });
   });
 });
 
