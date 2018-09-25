@@ -12,10 +12,7 @@ router.post('/register', (req, res) => {
     if (err)
       return res.status(500).send({ message: 'Email saving user.' });
 
-    let payload = { subject: newUser._id };
-    let token = jwt.encode(payload, '123');
-
-    res.status(200).send({ token });
+    createSendToken(res, newUser);
   });
 });
 
@@ -29,12 +26,16 @@ router.post('/login', async (req, res) => {
     if (!isMatch)
       return res.status(401).send({ message: 'Email or Password invalid.' });
 
-    let payload = { subject: user._id };
-    let token = jwt.encode(payload, '123');
-
-    res.status(200).send({ token });
+    createSendToken(res, user);
   });
 });
+
+function createSendToken(res, user) {
+  let payload = { subject: user._id };
+  let token = jwt.encode(payload, '123');
+
+  res.status(200).send({ token });
+}
 
 const auth = {
   router,
