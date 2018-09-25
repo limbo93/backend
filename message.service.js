@@ -10,7 +10,7 @@ router.post('/messages', (req, res) => {
             return res.status(500).send({ message: 'Saving message error' });
         }
 
-        res.sendStatus(200);
+        res.status(200).send(result);
     });
 });
 
